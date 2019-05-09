@@ -22,7 +22,7 @@ spring:
   thymeleaf:
     enabled: true
     cache: false
-    mode: HTML
+    mode: HTML5
     template-resolver-order: 0
     prefix: classpath:/templates/
     suffix: .html
