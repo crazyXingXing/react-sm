@@ -7,5 +7,5 @@
 2、加入thymeleaf视图模板
 
 
-1）前端构建： npm run install  ,npm run start
+1）前端构建： npm  install  ,npm run start
 2)后端构建： 运行Application类
