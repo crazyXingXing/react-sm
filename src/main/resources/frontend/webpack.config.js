@@ -1,6 +1,6 @@
 const path = require('path');
 var CSS_PATH = path.resolve(__dirname, 'css');
-
+console.log('__dirname: ' + __dirname)
 const options = {
   style: true,
   libraryDirectory: 'lib',       // default: lib
@@ -9,11 +9,11 @@ const options = {
 
 module.exports = {
   entry: {
-        index:path.join(__dirname, './frontend/index.js'),
+        index:path.join(__dirname, './src/index.js'),
         vendors: ['react','reflux','react-mixin','react-dom','jquery','echarts','antd']
   },
   output: {
-        path: path.join(__dirname, './templates'),
+        path: path.join(__dirname, '../templates'),
         filename: '[name].js'
   },
   resolve: {
@@ -27,7 +27,7 @@ module.exports = {
             {
                 test:/\.js?$/,
                 exclude:/node_modules/,
-                loader:'babel',
+                loader:'babel?compact=false',
             },
             {
               test: /.less/,
@@ -44,6 +44,21 @@ module.exports = {
         plugins: [['antd', options]]
   },
   devServer: {
+	host:'127.0.0.1', 
+	port:3333,
+	proxy: {
+		'/': {
+			target: 'http://localhost:9999/',
+			changeOrigin: true,
+			secure: false
+		},
+		'/getUsers': {
+			target: 'http://localhost:9999/getUsers',
+			changeOrigin: true,
+			secure: false
+		}
+		
+	},
     contentBase: "./public",//本地服务器所加载的页面所在的目录
     colors: true,//终端中输出结果为彩色
     historyApiFallback: true,//不跳转
